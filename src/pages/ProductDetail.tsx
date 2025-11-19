@@ -6,10 +6,11 @@ import ProductCard from "@/components/ProductCard";
 import { Button } from "@/components/ui/button";
 import { Heart } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import ring1 from "@/assets/ring-1.jpg";
-import necklace1 from "@/assets/necklace-1.jpg";
-import earrings1 from "@/assets/earrings-1.jpg";
-import bracelet1 from "@/assets/bracelet-1.jpg";
+import necklace1 from "@/assets/necklace-blue-pendant.jpg";
+import necklace2 from "@/assets/necklace-gold-blue.jpg";
+import necklace3 from "@/assets/necklace-gold-green.jpg";
+import earrings1 from "@/assets/earrings-silver-bells.jpg";
+import earrings2 from "@/assets/earrings-turquoise.jpg";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -18,24 +19,23 @@ const ProductDetail = () => {
   // Mock product data
   const product = {
     id: "1",
-    name: "Eternal Elegance Ring",
-    price: 2499,
-    image: ring1,
-    category: "Rings",
-    description: "A timeless masterpiece crafted with precision and care. This ring features a brilliant-cut diamond set in 18k white gold, symbolizing eternal love and commitment.",
+    name: "Blue Crystal Pendant Set",
+    price: 4299,
+    image: necklace1,
+    category: "Necklaces",
+    description: "An exquisite pendant necklace featuring a mesmerizing blue crystal stone set in a delicate rose gold chain. This elegant piece captures light beautifully and adds a touch of sophistication to any outfit.",
     details: {
-      material: "18K White Gold",
-      gemstone: "1.5ct Diamond",
-      dimensions: "2mm band width",
-      weight: "3.2g",
+      material: "Rose Gold Plated",
+      gemstone: "Blue Crystal",
+      dimensions: "Pendant: 2cm diameter",
+      weight: "8.5g",
     },
-    sizes: ["5", "6", "7", "8", "9"],
   };
 
   const relatedProducts = [
-    { id: "2", name: "Cascade Pendant Necklace", price: 3299, image: necklace1, category: "Necklaces" },
-    { id: "3", name: "Luminous Drop Earrings", price: 1899, image: earrings1, category: "Earrings" },
-    { id: "4", name: "Aurora Diamond Bracelet", price: 2799, image: bracelet1, category: "Bracelets" },
+    { id: "2", name: "Royal Mango Necklace Set", price: 6499, image: necklace2, category: "Necklaces" },
+    { id: "3", name: "Emerald Mango Necklace Set", price: 7299, image: necklace3, category: "Necklaces" },
+    { id: "4", name: "Turquoise Vintage Earrings", price: 3199, image: earrings2, category: "Earrings" },
   ];
 
   return (

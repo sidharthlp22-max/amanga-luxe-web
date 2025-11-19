@@ -5,27 +5,25 @@ import ProductCard from "@/components/ProductCard";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { Checkbox } from "@/components/ui/checkbox";
-import ring1 from "@/assets/ring-1.jpg";
-import necklace1 from "@/assets/necklace-1.jpg";
-import earrings1 from "@/assets/earrings-1.jpg";
-import bracelet1 from "@/assets/bracelet-1.jpg";
+import necklace1 from "@/assets/necklace-blue-pendant.jpg";
+import necklace2 from "@/assets/necklace-gold-blue.jpg";
+import necklace3 from "@/assets/necklace-gold-green.jpg";
+import earrings1 from "@/assets/earrings-silver-bells.jpg";
+import earrings2 from "@/assets/earrings-turquoise.jpg";
 
 const Shop = () => {
   const [priceRange, setPriceRange] = useState([0, 10000]);
   
   const products = [
-    { id: "1", name: "Eternal Elegance Ring", price: 2499, image: ring1, category: "Rings" },
-    { id: "2", name: "Cascade Pendant Necklace", price: 3299, image: necklace1, category: "Necklaces" },
-    { id: "3", name: "Luminous Drop Earrings", price: 1899, image: earrings1, category: "Earrings" },
-    { id: "4", name: "Aurora Diamond Bracelet", price: 2799, image: bracelet1, category: "Bracelets" },
-    { id: "5", name: "Celestial Band Ring", price: 1799, image: ring1, category: "Rings" },
-    { id: "6", name: "Infinity Chain Necklace", price: 2999, image: necklace1, category: "Necklaces" },
-    { id: "7", name: "Stellar Stud Earrings", price: 1499, image: earrings1, category: "Earrings" },
-    { id: "8", name: "Grace Tennis Bracelet", price: 3499, image: bracelet1, category: "Bracelets" },
+    { id: "1", name: "Blue Crystal Pendant Set", price: 4299, image: necklace1, category: "Necklaces" },
+    { id: "2", name: "Royal Mango Necklace Set", price: 6499, image: necklace2, category: "Necklaces" },
+    { id: "3", name: "Emerald Mango Necklace Set", price: 7299, image: necklace3, category: "Necklaces" },
+    { id: "4", name: "Silver Bell Drop Earrings", price: 2899, image: earrings1, category: "Earrings" },
+    { id: "5", name: "Turquoise Vintage Earrings", price: 3199, image: earrings2, category: "Earrings" },
   ];
 
-  const categories = ["Rings", "Necklaces", "Earrings", "Bracelets"];
-  const materials = ["Gold", "Platinum", "Silver", "Rose Gold"];
+  const categories = ["Necklaces", "Earrings"];
+  const materials = ["Gold", "Silver", "Gemstone", "Antique Gold"];
 
   return (
     <div className="min-h-screen bg-background">
