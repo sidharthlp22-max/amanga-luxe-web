@@ -5,17 +5,17 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
 import heroImage from "@/assets/hero-jewelry.jpg";
-import ring1 from "@/assets/ring-1.jpg";
-import necklace1 from "@/assets/necklace-1.jpg";
-import earrings1 from "@/assets/earrings-1.jpg";
-import bracelet1 from "@/assets/bracelet-1.jpg";
+import necklace1 from "@/assets/necklace-blue-pendant.jpg";
+import necklace2 from "@/assets/necklace-gold-blue.jpg";
+import necklace3 from "@/assets/necklace-gold-green.jpg";
+import earrings1 from "@/assets/earrings-silver-bells.jpg";
 
 const Index = () => {
   const featuredProducts = [
-    { id: "1", name: "Eternal Elegance Ring", price: 2499, image: ring1, category: "Rings" },
-    { id: "2", name: "Cascade Pendant Necklace", price: 3299, image: necklace1, category: "Necklaces" },
-    { id: "3", name: "Luminous Drop Earrings", price: 1899, image: earrings1, category: "Earrings" },
-    { id: "4", name: "Aurora Diamond Bracelet", price: 2799, image: bracelet1, category: "Bracelets" },
+    { id: "1", name: "Blue Crystal Pendant Set", price: 4299, image: necklace1, category: "Necklaces" },
+    { id: "2", name: "Royal Mango Necklace Set", price: 6499, image: necklace2, category: "Necklaces" },
+    { id: "3", name: "Emerald Mango Necklace Set", price: 7299, image: necklace3, category: "Necklaces" },
+    { id: "4", name: "Silver Bell Drop Earrings", price: 2899, image: earrings1, category: "Earrings" },
   ];
 
   return (
