@@ -1,0 +1,46 @@
+name: Build and produce ZIP
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Determine build directory
+        id: builddir
+        run: |
+          if [ -d "dist" ]; then echo "dir=dist" >> $GITHUB_OUTPUT; fi
+          if [ -d "build" ]; then echo "dir=build" >> $GITHUB_OUTPUT; fi
+          if [ -d "out" ]; then echo "dir=out" >> $GITHUB_OUTPUT; fi
+          if [ -z "${{ steps.builddir.outputs.dir }}" ]; then echo "dir=dist" >> $GITHUB_OUTPUT; fi
+
+      - name: Zip build output
+        run: |
+          BUILD_DIR="${{ steps.builddir.outputs.dir }}"
+          echo "Using build dir: $BUILD_DIR"
+          cd "$BUILD_DIR"
+          zip -r ../site-to-upload.zip .
+          cd ..
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-to-upload
+          path: site-to-upload.zip
