@@ -4,7 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
 import { Button } from "@/components/ui/button";
-import { Heart } from "lucide-react";
+import { Heart, MessageCircle, Instagram } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import necklace1 from "@/assets/necklace-blue-pendant.jpg";
 import necklace2 from "@/assets/necklace-gold-blue.jpg";
@@ -37,6 +37,21 @@ const ProductDetail = () => {
     { id: "3", name: "Emerald Mango Necklace Set", price: 7299, image: necklace3, category: "Necklaces" },
     { id: "4", name: "Turquoise Vintage Earrings", price: 3199, image: earrings2, category: "Earrings" },
   ];
+
+  // Contact info - Update these with your actual details
+  const WHATSAPP_NUMBER = "919999999999"; // Replace with your WhatsApp number (country code + number, no spaces or + sign)
+  const INSTAGRAM_HANDLE = "amanga_jewelry"; // Replace with your Instagram username
+
+  const handleWhatsAppOrder = () => {
+    const message = encodeURIComponent(
+      `Hi! I'm interested in ordering:\n\n${product.name}\nPrice: ₹${product.price.toLocaleString()}\n\nPlease share more details.`
+    );
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, '_blank');
+  };
+
+  const handleInstagramContact = () => {
+    window.open(`https://www.instagram.com/${INSTAGRAM_HANDLE}`, '_blank');
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -92,11 +107,30 @@ const ProductDetail = () => {
             </p>
 
             {/* Actions */}
-            <div className="flex gap-4">
+            <div className="space-y-4">
+              <div className="flex gap-4">
+                <Button
+                  size="lg"
+                  className="flex-1 gradient-bg text-white hover:opacity-90"
+                  onClick={handleWhatsAppOrder}
+                >
+                  <MessageCircle className="h-5 w-5 mr-2" />
+                  Order via WhatsApp
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="flex-1"
+                  onClick={handleInstagramContact}
+                >
+                  <Instagram className="h-5 w-5 mr-2" />
+                  Contact on Instagram
+                </Button>
+              </div>
               <Button
                 size="lg"
                 variant="outline"
-                className={`flex-1 ${isWishlisted ? "border-secondary text-secondary" : ""}`}
+                className={`w-full ${isWishlisted ? "border-secondary text-secondary" : ""}`}
                 onClick={() => setIsWishlisted(!isWishlisted)}
               >
                 <Heart className={`h-5 w-5 mr-2 ${isWishlisted ? "fill-current" : ""}`} />
