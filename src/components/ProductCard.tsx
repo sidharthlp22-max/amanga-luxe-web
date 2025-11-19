@@ -1,4 +1,4 @@
-import { Heart } from "lucide-react";
+import { Heart, MessageCircle, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -13,6 +13,23 @@ interface ProductCardProps {
 
 const ProductCard = ({ id, name, price, image, category }: ProductCardProps) => {
   const [isWishlisted, setIsWishlisted] = useState(false);
+
+  // Contact info - Update these with your actual details
+  const WHATSAPP_NUMBER = "919999999999"; // Replace with your WhatsApp number
+  const INSTAGRAM_HANDLE = "amanga_jewelry"; // Replace with your Instagram username
+
+  const handleWhatsAppOrder = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const message = encodeURIComponent(
+      `Hi! I'm interested in:\n\n${name}\nPrice: ₹${price.toLocaleString()}`
+    );
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, '_blank');
+  };
+
+  const handleInstagramContact = (e: React.MouseEvent) => {
+    e.preventDefault();
+    window.open(`https://www.instagram.com/${INSTAGRAM_HANDLE}`, '_blank');
+  };
 
   return (
     <div className="group relative bg-card rounded-lg overflow-hidden hover-lift">
@@ -36,6 +53,24 @@ const ProductCard = ({ id, name, price, image, category }: ProductCardProps) => 
           onClick={() => setIsWishlisted(!isWishlisted)}
         >
           <Heart className={`h-4 w-4 ${isWishlisted ? "fill-current" : ""}`} />
+        </Button>
+        <Button
+          variant="secondary"
+          size="icon"
+          className="rounded-full bg-background/90 backdrop-blur-sm hover:bg-background"
+          onClick={handleWhatsAppOrder}
+          title="Order via WhatsApp"
+        >
+          <MessageCircle className="h-4 w-4" />
+        </Button>
+        <Button
+          variant="secondary"
+          size="icon"
+          className="rounded-full bg-background/90 backdrop-blur-sm hover:bg-background"
+          onClick={handleInstagramContact}
+          title="Contact on Instagram"
+        >
+          <Instagram className="h-4 w-4" />
         </Button>
       </div>
 

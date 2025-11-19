@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, Phone, MapPin, Clock } from "lucide-react";
+import { Mail, Phone, MapPin, Clock, MessageCircle, Instagram } from "lucide-react";
 
 const Contact = () => {
   return (
@@ -125,6 +125,46 @@ const Contact = () => {
                         Saturday: 11:00 AM - 6:00 PM<br />
                         Sunday: 12:00 PM - 5:00 PM
                       </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start space-x-4">
+                    <div className="p-3 rounded-lg gradient-bg flex-shrink-0">
+                      <MessageCircle className="h-5 w-5 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold mb-1">WhatsApp</h3>
+                      <p className="text-muted-foreground mb-2">
+                        Quick inquiries and orders
+                      </p>
+                      <a
+                        href="https://wa.me/919999999999"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary hover:underline"
+                      >
+                        +91 99999 99999
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start space-x-4">
+                    <div className="p-3 rounded-lg gradient-bg flex-shrink-0">
+                      <Instagram className="h-5 w-5 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold mb-1">Instagram</h3>
+                      <p className="text-muted-foreground mb-2">
+                        Follow us for latest collections
+                      </p>
+                      <a
+                        href="https://www.instagram.com/amanga_jewelry"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary hover:underline"
+                      >
+                        @amanga_jewelry
+                      </a>
                     </div>
                   </div>
                 </div>
