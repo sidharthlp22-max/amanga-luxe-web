@@ -1,9 +1,7 @@
-import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
 import { Button } from "@/components/ui/button";
-import { Slider } from "@/components/ui/slider";
 import { Checkbox } from "@/components/ui/checkbox";
 import necklace1 from "@/assets/necklace-blue-pendant.jpg";
 import necklace2 from "@/assets/necklace-gold-blue.jpg";
@@ -12,8 +10,6 @@ import earrings1 from "@/assets/earrings-silver-bells.jpg";
 import earrings2 from "@/assets/earrings-turquoise.jpg";
 
 const Shop = () => {
-  const [priceRange, setPriceRange] = useState([0, 10000]);
-  
   const products = [
     { id: "1", name: "Blue Crystal Pendant Set", price: 4299, image: necklace1, category: "Necklaces" },
     { id: "2", name: "Royal Mango Necklace Set", price: 6499, image: necklace2, category: "Necklaces" },
@@ -74,24 +70,6 @@ const Shop = () => {
                       </label>
                     </div>
                   ))}
-                </div>
-              </div>
-
-              {/* Price Range */}
-              <div>
-                <h3 className="font-semibold mb-4">Price Range</h3>
-                <div className="space-y-4">
-                  <Slider
-                    value={priceRange}
-                    onValueChange={setPriceRange}
-                    max={10000}
-                    step={100}
-                    className="w-full"
-                  />
-                  <div className="flex items-center justify-between text-sm text-muted-foreground">
-                    <span>₹{priceRange[0].toLocaleString()}</span>
-                    <span>₹{priceRange[1].toLocaleString()}</span>
-                  </div>
                 </div>
               </div>
 
