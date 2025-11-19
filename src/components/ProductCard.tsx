@@ -49,7 +49,7 @@ const ProductCard = ({ id, name, price, image, category }: ProductCardProps) => 
           </h3>
         </Link>
         <div className="flex items-center justify-between">
-          <span className="text-lg font-semibold">${price.toLocaleString()}</span>
+          <span className="text-lg font-semibold">₹{price.toLocaleString()}</span>
           <Button size="sm" className="gradient-bg text-white hover:opacity-90">
             <ShoppingCart className="h-4 w-4 mr-1" />
             Add

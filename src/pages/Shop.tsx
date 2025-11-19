@@ -91,8 +91,8 @@ const Shop = () => {
                     className="w-full"
                   />
                   <div className="flex items-center justify-between text-sm text-muted-foreground">
-                    <span>${priceRange[0].toLocaleString()}</span>
-                    <span>${priceRange[1].toLocaleString()}</span>
+                    <span>₹{priceRange[0].toLocaleString()}</span>
+                    <span>₹{priceRange[1].toLocaleString()}</span>
                   </div>
                 </div>
               </div>
