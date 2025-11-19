@@ -1,4 +1,4 @@
-import { Heart, ShoppingCart } from "lucide-react";
+import { Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -50,10 +50,6 @@ const ProductCard = ({ id, name, price, image, category }: ProductCardProps) => 
         </Link>
         <div className="flex items-center justify-between">
           <span className="text-lg font-semibold">₹{price.toLocaleString()}</span>
-          <Button size="sm" className="gradient-bg text-white hover:opacity-90">
-            <ShoppingCart className="h-4 w-4 mr-1" />
-            Add
-          </Button>
         </div>
       </div>
     </div>
