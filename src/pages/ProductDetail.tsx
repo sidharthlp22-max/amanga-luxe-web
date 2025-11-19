@@ -4,7 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
 import { Button } from "@/components/ui/button";
-import { Heart, ShoppingCart, Check } from "lucide-react";
+import { Heart } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ring1 from "@/assets/ring-1.jpg";
 import necklace1 from "@/assets/necklace-1.jpg";
@@ -13,7 +13,6 @@ import bracelet1 from "@/assets/bracelet-1.jpg";
 
 const ProductDetail = () => {
   const { id } = useParams();
-  const [quantity, setQuantity] = useState(1);
   const [isWishlisted, setIsWishlisted] = useState(false);
 
   // Mock product data
@@ -92,72 +91,27 @@ const ProductDetail = () => {
               {product.description}
             </p>
 
-            {/* Size Selection */}
-            <div>
-              <label className="font-semibold mb-3 block">Select Size</label>
-              <div className="flex flex-wrap gap-2">
-                {product.sizes.map((size) => (
-                  <Button
-                    key={size}
-                    variant="outline"
-                    className="w-12 h-12 rounded-full"
-                  >
-                    {size}
-                  </Button>
-                ))}
-              </div>
-            </div>
-
-            {/* Quantity */}
-            <div>
-              <label className="font-semibold mb-3 block">Quantity</label>
-              <div className="flex items-center space-x-4">
-                <Button
-                  variant="outline"
-                  size="icon"
-                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                >
-                  -
-                </Button>
-                <span className="text-lg font-medium w-12 text-center">{quantity}</span>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  onClick={() => setQuantity(quantity + 1)}
-                >
-                  +
-                </Button>
-              </div>
-            </div>
-
             {/* Actions */}
             <div className="flex gap-4">
-              <Button size="lg" className="flex-1 gradient-bg text-white hover:opacity-90">
-                <ShoppingCart className="mr-2 h-5 w-5" />
-                Add to Cart
-              </Button>
               <Button
                 size="lg"
                 variant="outline"
-                className={isWishlisted ? "border-secondary text-secondary" : ""}
+                className={`flex-1 ${isWishlisted ? "border-secondary text-secondary" : ""}`}
                 onClick={() => setIsWishlisted(!isWishlisted)}
               >
-                <Heart className={`h-5 w-5 ${isWishlisted ? "fill-current" : ""}`} />
+                <Heart className={`h-5 w-5 mr-2 ${isWishlisted ? "fill-current" : ""}`} />
+                {isWishlisted ? "Added to Wishlist" : "Add to Wishlist"}
               </Button>
             </div>
 
             {/* Features */}
             <div className="border-t border-border pt-6 space-y-3">
               <div className="flex items-center space-x-2 text-sm">
-                <Check className="h-4 w-4 text-primary" />
+                <Heart className="h-4 w-4 text-primary" />
                 <span>Lifetime Guarantee</span>
               </div>
               <div className="flex items-center space-x-2 text-sm">
-                <Check className="h-4 w-4 text-primary" />
-                <span>Free Shipping & Returns</span>
-              </div>
-              <div className="flex items-center space-x-2 text-sm">
-                <Check className="h-4 w-4 text-primary" />
+                <Heart className="h-4 w-4 text-primary" />
                 <span>Certificate of Authenticity</span>
               </div>
             </div>
@@ -167,10 +121,9 @@ const ProductDetail = () => {
         {/* Product Details Tabs */}
         <div className="mb-20">
           <Tabs defaultValue="details" className="w-full">
-            <TabsList className="grid w-full grid-cols-3 max-w-md">
+            <TabsList className="grid w-full grid-cols-2 max-w-md">
               <TabsTrigger value="details">Details</TabsTrigger>
               <TabsTrigger value="care">Care</TabsTrigger>
-              <TabsTrigger value="shipping">Shipping</TabsTrigger>
             </TabsList>
             <TabsContent value="details" className="mt-8">
               <div className="grid grid-cols-2 gap-4 max-w-md">
@@ -188,14 +141,6 @@ const ProductDetail = () => {
                   To maintain the beauty and brilliance of your jewelry, we recommend regular cleaning with a soft cloth. 
                   Store in a cool, dry place away from direct sunlight. Avoid contact with harsh chemicals and remove 
                   during physical activities.
-                </p>
-              </div>
-            </TabsContent>
-            <TabsContent value="shipping" className="mt-8">
-              <div className="prose prose-sm max-w-2xl">
-                <p className="text-muted-foreground">
-                  Free standard shipping on all orders. Express shipping available at checkout. All items are fully 
-                  insured during transit. Returns accepted within 30 days of purchase.
                 </p>
               </div>
             </TabsContent>
