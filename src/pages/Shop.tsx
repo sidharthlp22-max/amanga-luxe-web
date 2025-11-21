@@ -3,20 +3,9 @@ import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import necklace1 from "@/assets/necklace-blue-pendant.jpg";
-import necklace2 from "@/assets/necklace-gold-blue.jpg";
-import necklace3 from "@/assets/necklace-gold-green.jpg";
-import earrings1 from "@/assets/earrings-silver-bells.jpg";
-import earrings2 from "@/assets/earrings-turquoise.jpg";
+import { products } from "@/data/products";
 
 const Shop = () => {
-  const products = [
-    { id: "1", name: "Blue Crystal Pendant Set", price: 4299, image: necklace1, category: "Necklaces" },
-    { id: "2", name: "Royal Mango Necklace Set", price: 6499, image: necklace2, category: "Necklaces" },
-    { id: "3", name: "Emerald Mango Necklace Set", price: 7299, image: necklace3, category: "Necklaces" },
-    { id: "4", name: "Silver Bell Drop Earrings", price: 2899, image: earrings1, category: "Earrings" },
-    { id: "5", name: "Turquoise Vintage Earrings", price: 3199, image: earrings2, category: "Earrings" },
-  ];
 
   const categories = ["Necklaces", "Earrings"];
   const materials = ["Gold", "Silver", "Gemstone", "Antique Gold"];

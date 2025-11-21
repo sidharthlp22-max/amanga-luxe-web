@@ -1,42 +1,24 @@
 import { useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, Navigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
 import { Button } from "@/components/ui/button";
 import { Heart, MessageCircle, Instagram } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import necklace1 from "@/assets/necklace-blue-pendant.jpg";
-import necklace2 from "@/assets/necklace-gold-blue.jpg";
-import necklace3 from "@/assets/necklace-gold-green.jpg";
-import earrings1 from "@/assets/earrings-silver-bells.jpg";
-import earrings2 from "@/assets/earrings-turquoise.jpg";
+import { products, getProductById } from "@/data/products";
 
 const ProductDetail = () => {
   const { id } = useParams();
   const [isWishlisted, setIsWishlisted] = useState(false);
 
-  // Mock product data
-  const product = {
-    id: "1",
-    name: "Blue Crystal Pendant Set",
-    price: 4299,
-    image: necklace1,
-    category: "Necklaces",
-    description: "An exquisite pendant necklace featuring a mesmerizing blue crystal stone set in a delicate rose gold chain. This elegant piece captures light beautifully and adds a touch of sophistication to any outfit.",
-    details: {
-      material: "Rose Gold Plated",
-      gemstone: "Blue Crystal",
-      dimensions: "Pendant: 2cm diameter",
-      weight: "8.5g",
-    },
-  };
+  const product = getProductById(id || "");
+  
+  if (!product) {
+    return <Navigate to="/shop" replace />;
+  }
 
-  const relatedProducts = [
-    { id: "2", name: "Royal Mango Necklace Set", price: 6499, image: necklace2, category: "Necklaces" },
-    { id: "3", name: "Emerald Mango Necklace Set", price: 7299, image: necklace3, category: "Necklaces" },
-    { id: "4", name: "Turquoise Vintage Earrings", price: 3199, image: earrings2, category: "Earrings" },
-  ];
+  const relatedProducts = products.filter(p => p.id !== product.id && p.category === product.category).slice(0, 3);
 
   // Contact info - Update these with your actual details
   const WHATSAPP_NUMBER = "919999999999"; // Replace with your WhatsApp number (country code + number, no spaces or + sign)
