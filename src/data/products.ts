@@ -23,7 +23,7 @@ export const products: Product[] = [
   {
     id: "1",
     name: "Blue Crystal Pendant Set",
-    price: 4299,
+    price: 1300,
     image: necklace1,
     category: "Necklaces",
     description: "An exquisite pendant necklace featuring a mesmerizing blue crystal stone set in a delicate rose gold chain. This elegant piece captures light beautifully and adds a touch of sophistication to any outfit.",
