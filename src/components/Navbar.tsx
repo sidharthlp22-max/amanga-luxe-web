@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Input } from "@/components/ui/input";
 import { useWishlist } from "@/context/WishlistContext";
+import logo from "@/assets/logo.jpg";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,8 +23,8 @@ const Navbar = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <h1 className="text-3xl font-serif font-bold gradient-text">AMANGA</h1>
+          <Link to="/" className="flex items-center">
+            <img src={logo} alt="AMANGA - Quality meets Fashion" className="h-16 w-auto object-contain" />
           </Link>
 
           {/* Desktop Navigation */}
