@@ -1,7 +1,8 @@
 import { Heart, MessageCircle, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useWishlist } from "@/context/WishlistContext";
+import { getProductById } from "@/data/products";
 
 interface ProductCardProps {
   id: string;
@@ -12,7 +13,8 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ id, name, price, image, category }: ProductCardProps) => {
-  const [isWishlisted, setIsWishlisted] = useState(false);
+  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
+  const isWishlisted = isInWishlist(id);
 
   // Contact info
   const WHATSAPP_NUMBER = "917025296299";
@@ -29,6 +31,18 @@ const ProductCard = ({ id, name, price, image, category }: ProductCardProps) => 
   const handleInstagramContact = (e: React.MouseEvent) => {
     e.preventDefault();
     window.open(`https://www.instagram.com/${INSTAGRAM_HANDLE}`, '_blank');
+  };
+
+  const handleWishlistToggle = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (isWishlisted) {
+      removeFromWishlist(id);
+    } else {
+      const product = getProductById(id);
+      if (product) {
+        addToWishlist(product);
+      }
+    }
   };
 
   return (
@@ -50,7 +64,7 @@ const ProductCard = ({ id, name, price, image, category }: ProductCardProps) => 
           className={`rounded-full bg-background/90 backdrop-blur-sm hover:bg-background ${
             isWishlisted ? "text-secondary" : ""
           }`}
-          onClick={() => setIsWishlisted(!isWishlisted)}
+          onClick={handleWishlistToggle}
         >
           <Heart className={`h-4 w-4 ${isWishlisted ? "fill-current" : ""}`} />
         </Button>

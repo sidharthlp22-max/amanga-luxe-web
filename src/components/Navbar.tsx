@@ -4,10 +4,11 @@ import { Heart, Menu, X, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Input } from "@/components/ui/input";
+import { useWishlist } from "@/context/WishlistContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [wishlistCount] = useState(0);
+  const { wishlistCount } = useWishlist();
 
   const navLinks = [
     { name: "Home", path: "/" },
@@ -53,14 +54,16 @@ const Navbar = () => {
 
           {/* Icons */}
           <div className="flex items-center space-x-4">
-            <Button variant="ghost" size="icon" className="relative hidden md:flex">
-              <Heart className="h-5 w-5" />
-              {wishlistCount > 0 && (
-                <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-secondary text-white text-xs flex items-center justify-center">
-                  {wishlistCount}
-                </span>
-              )}
-            </Button>
+            <Link to="/wishlist">
+              <Button variant="ghost" size="icon" className="relative hidden md:flex">
+                <Heart className="h-5 w-5" />
+                {wishlistCount > 0 && (
+                  <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-secondary text-white text-xs flex items-center justify-center">
+                    {wishlistCount}
+                  </span>
+                )}
+              </Button>
+            </Link>
 
             {/* Mobile Menu */}
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
