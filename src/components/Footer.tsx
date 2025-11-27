@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Facebook, Instagram, Twitter, Mail } from "lucide-react";
+import logo from "@/assets/logo.jpg";
 
 const Footer = () => {
   return (
@@ -8,7 +9,9 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="space-y-4">
-            <h2 className="text-2xl font-serif font-bold gradient-text">AMANGA</h2>
+            <Link to="/">
+              <img src={logo} alt="AMANGA - Quality meets Fashion" className="h-20 w-auto object-contain" />
+            </Link>
             <p className="text-sm text-muted-foreground">
               Where Quality meets Fashion. Discover timeless elegance in every piece.
             </p>
