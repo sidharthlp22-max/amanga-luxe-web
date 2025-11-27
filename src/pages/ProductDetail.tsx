@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -7,10 +6,11 @@ import { Button } from "@/components/ui/button";
 import { Heart, MessageCircle, Instagram } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { products, getProductById } from "@/data/products";
+import { useWishlist } from "@/context/WishlistContext";
 
 const ProductDetail = () => {
   const { id } = useParams();
-  const [isWishlisted, setIsWishlisted] = useState(false);
+  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
 
   const product = getProductById(id || "");
   
@@ -18,6 +18,7 @@ const ProductDetail = () => {
     return <Navigate to="/shop" replace />;
   }
 
+  const isWishlisted = isInWishlist(product.id);
   const relatedProducts = products.filter(p => p.id !== product.id && p.category === product.category).slice(0, 3);
 
   // Contact info
@@ -33,6 +34,14 @@ const ProductDetail = () => {
 
   const handleInstagramContact = () => {
     window.open(`https://www.instagram.com/${INSTAGRAM_HANDLE}`, '_blank');
+  };
+
+  const handleWishlistToggle = () => {
+    if (isWishlisted) {
+      removeFromWishlist(product.id);
+    } else {
+      addToWishlist(product);
+    }
   };
 
   return (
@@ -113,7 +122,7 @@ const ProductDetail = () => {
                 size="lg"
                 variant="outline"
                 className={`w-full ${isWishlisted ? "border-secondary text-secondary" : ""}`}
-                onClick={() => setIsWishlisted(!isWishlisted)}
+                onClick={handleWishlistToggle}
               >
                 <Heart className={`h-5 w-5 mr-2 ${isWishlisted ? "fill-current" : ""}`} />
                 {isWishlisted ? "Added to Wishlist" : "Add to Wishlist"}
