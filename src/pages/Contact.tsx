@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, Phone, MapPin, Clock, MessageCircle, Instagram } from "lucide-react";
+import { Mail, Phone, Clock, MessageCircle, Instagram } from "lucide-react";
 
 const Contact = () => {
   return (
@@ -76,27 +76,12 @@ const Contact = () => {
                 <div className="space-y-6">
                   <div className="flex items-start space-x-4">
                     <div className="p-3 rounded-lg gradient-bg flex-shrink-0">
-                      <MapPin className="h-5 w-5 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold mb-1">Visit Our Boutique</h3>
-                      <p className="text-muted-foreground">
-                        123 Luxury Avenue<br />
-                        New York, NY 10001<br />
-                        United States
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start space-x-4">
-                    <div className="p-3 rounded-lg gradient-bg flex-shrink-0">
                       <Phone className="h-5 w-5 text-white" />
                     </div>
                     <div>
                       <h3 className="font-semibold mb-1">Call Us</h3>
                       <p className="text-muted-foreground">
-                        +1 (555) 123-4567<br />
-                        Toll Free: 1-800-AMANGA
+                        +91 7025296299
                       </p>
                     </div>
                   </div>
@@ -108,8 +93,7 @@ const Contact = () => {
                     <div>
                       <h3 className="font-semibold mb-1">Email Us</h3>
                       <p className="text-muted-foreground">
-                        info@amanga.com<br />
-                        support@amanga.com
+                        amangacollections@gmail.com
                       </p>
                     </div>
                   </div>
@@ -133,17 +117,17 @@ const Contact = () => {
                       <MessageCircle className="h-5 w-5 text-white" />
                     </div>
                     <div>
-                      <h3 className="font-semibold mb-1">WhatsApp</h3>
+                      <h3 className="font-semibold mb-1">Order via WhatsApp</h3>
                       <p className="text-muted-foreground mb-2">
                         Quick inquiries and orders
                       </p>
                       <a
-                        href="https://wa.me/919999999999"
+                        href="https://wa.me/917025296299"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-primary hover:underline"
                       >
-                        +91 99999 99999
+                        +91 7025296299
                       </a>
                     </div>
                   </div>
@@ -158,12 +142,12 @@ const Contact = () => {
                         Follow us for latest collections
                       </p>
                       <a
-                        href="https://www.instagram.com/amanga_jewelry"
+                        href="https://www.instagram.com/amanga.in/"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-primary hover:underline"
                       >
-                        @amanga_jewelry
+                        @amanga.in
                       </a>
                     </div>
                   </div>
