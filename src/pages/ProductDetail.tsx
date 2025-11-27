@@ -20,9 +20,9 @@ const ProductDetail = () => {
 
   const relatedProducts = products.filter(p => p.id !== product.id && p.category === product.category).slice(0, 3);
 
-  // Contact info - Update these with your actual details
-  const WHATSAPP_NUMBER = "919999999999"; // Replace with your WhatsApp number (country code + number, no spaces or + sign)
-  const INSTAGRAM_HANDLE = "amanga_jewelry"; // Replace with your Instagram username
+  // Contact info
+  const WHATSAPP_NUMBER = "917025296299";
+  const INSTAGRAM_HANDLE = "amanga.in";
 
   const handleWhatsAppOrder = () => {
     const message = encodeURIComponent(
