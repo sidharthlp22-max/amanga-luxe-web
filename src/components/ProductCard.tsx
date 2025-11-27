@@ -14,9 +14,9 @@ interface ProductCardProps {
 const ProductCard = ({ id, name, price, image, category }: ProductCardProps) => {
   const [isWishlisted, setIsWishlisted] = useState(false);
 
-  // Contact info - Update these with your actual details
-  const WHATSAPP_NUMBER = "919999999999"; // Replace with your WhatsApp number
-  const INSTAGRAM_HANDLE = "amanga_jewelry"; // Replace with your Instagram username
+  // Contact info
+  const WHATSAPP_NUMBER = "917025296299";
+  const INSTAGRAM_HANDLE = "amanga.in";
 
   const handleWhatsAppOrder = (e: React.MouseEvent) => {
     e.preventDefault();
