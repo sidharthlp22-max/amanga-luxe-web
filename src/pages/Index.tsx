@@ -89,9 +89,9 @@ const Index = () => {
                 <Shield className="h-6 w-6 text-white" />
               </div>
               <div>
-                <h3 className="font-semibold mb-2">Lifetime Guarantee</h3>
+                <h3 className="font-semibold mb-2">Certificate of Authenticity</h3>
                 <p className="text-sm text-muted-foreground">
-                  Every piece comes with our lifetime quality guarantee
+                  Every piece comes with a certificate of authenticity
                 </p>
               </div>
             </div>

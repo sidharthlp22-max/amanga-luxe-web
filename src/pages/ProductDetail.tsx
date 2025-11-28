@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -15,6 +15,10 @@ const ProductDetail = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const product = getProductById(id || "");
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
   
   if (!product) {
     return <Navigate to="/shop" replace />;
@@ -177,10 +181,6 @@ const ProductDetail = () => {
 
             {/* Features */}
             <div className="border-t border-border pt-6 space-y-3">
-              <div className="flex items-center space-x-2 text-sm">
-                <Heart className="h-4 w-4 text-primary" />
-                <span>Lifetime Guarantee</span>
-              </div>
               <div className="flex items-center space-x-2 text-sm">
                 <Heart className="h-4 w-4 text-primary" />
                 <span>Certificate of Authenticity</span>
