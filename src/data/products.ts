@@ -5,6 +5,7 @@ import earrings1 from "@/assets/earrings-silver-bells.jpg";
 import earrings2 from "@/assets/earrings-turquoise.jpg";
 import lotusNecklace1 from "@/assets/lotus-necklace-1.jpg";
 import lotusNecklace2 from "@/assets/lotus-necklace-2.jpg";
+import royalMango2 from "@/assets/royal-mango-2.jpg";
 
 export interface Product {
   id: string;
@@ -42,6 +43,7 @@ export const products: Product[] = [
     name: "Royal Mango Necklace Set",
     price: 6499,
     image: necklace2,
+    images: [necklace2, royalMango2],
     category: "Necklaces",
     description: "A stunning traditional mango necklace set featuring intricate gold work with royal blue accents. This piece combines traditional craftsmanship with contemporary elegance, perfect for special occasions.",
     details: {
