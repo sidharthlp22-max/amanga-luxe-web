@@ -3,12 +3,15 @@ import necklace2 from "@/assets/necklace-gold-blue.jpg";
 import necklace3 from "@/assets/necklace-gold-green.jpg";
 import earrings1 from "@/assets/earrings-silver-bells.jpg";
 import earrings2 from "@/assets/earrings-turquoise.jpg";
+import lotusNecklace1 from "@/assets/lotus-necklace-1.jpg";
+import lotusNecklace2 from "@/assets/lotus-necklace-2.jpg";
 
 export interface Product {
   id: string;
   name: string;
   price: number;
   image: string;
+  images?: string[];
   category: string;
   description: string;
   details: {
@@ -87,6 +90,21 @@ export const products: Product[] = [
       gemstone: "Turquoise",
       dimensions: "Length: 5cm",
       weight: "7.5g",
+    },
+  },
+  {
+    id: "6",
+    name: "Lotus Design Invisible Set",
+    price: 1600,
+    image: lotusNecklace1,
+    images: [lotusNecklace1, lotusNecklace2],
+    category: "Necklaces",
+    description: "A beautiful lotus design invisible set featuring a stunning red lotus pendant with green accents on a delicate gold wire chain adorned with pearls. Includes matching lotus stud earrings for a complete elegant look.",
+    details: {
+      material: "Gold Plated",
+      gemstone: "Enamel & Pearls",
+      dimensions: "Pendant: 3cm diameter",
+      weight: "12g",
     },
   },
 ];
