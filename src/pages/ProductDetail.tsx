@@ -1,9 +1,10 @@
+import { useState } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
 import { Button } from "@/components/ui/button";
-import { Heart, MessageCircle, Instagram } from "lucide-react";
+import { Heart, MessageCircle, Instagram, ChevronLeft, ChevronRight } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { products, getProductById } from "@/data/products";
 import { useWishlist } from "@/context/WishlistContext";
@@ -11,6 +12,7 @@ import { useWishlist } from "@/context/WishlistContext";
 const ProductDetail = () => {
   const { id } = useParams();
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const product = getProductById(id || "");
   
@@ -20,6 +22,9 @@ const ProductDetail = () => {
 
   const isWishlisted = isInWishlist(product.id);
   const relatedProducts = products.filter(p => p.id !== product.id && p.category === product.category).slice(0, 3);
+
+  // Get all images for the product (use images array if available, otherwise use single image)
+  const productImages = product.images && product.images.length > 0 ? product.images : [product.image];
 
   // Contact info
   const WHATSAPP_NUMBER = "917025296299";
@@ -44,6 +49,14 @@ const ProductDetail = () => {
     }
   };
 
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % productImages.length);
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + productImages.length) % productImages.length);
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -59,24 +72,57 @@ const ProductDetail = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
-          {/* Product Images */}
+          {/* Product Images with Slideshow */}
           <div className="space-y-4">
-            <div className="aspect-square rounded-lg overflow-hidden bg-muted">
+            <div className="aspect-square rounded-lg overflow-hidden bg-muted relative group">
               <img
-                src={product.image}
+                src={productImages[currentImageIndex]}
                 alt={product.name}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-opacity duration-300"
               />
+              
+              {/* Navigation arrows - only show if multiple images */}
+              {productImages.length > 1 && (
+                <>
+                  <button
+                    onClick={prevImage}
+                    className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/80 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-background"
+                  >
+                    <ChevronLeft className="h-5 w-5" />
+                  </button>
+                  <button
+                    onClick={nextImage}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/80 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-background"
+                  >
+                    <ChevronRight className="h-5 w-5" />
+                  </button>
+                  
+                  {/* Image counter */}
+                  <div className="absolute bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-background/80 backdrop-blur-sm text-sm">
+                    {currentImageIndex + 1} / {productImages.length}
+                  </div>
+                </>
+              )}
             </div>
+            
+            {/* Thumbnail gallery */}
             <div className="grid grid-cols-4 gap-4">
-              {[1, 2, 3, 4].map((i) => (
-                <div key={i} className="aspect-square rounded-lg overflow-hidden bg-muted cursor-pointer hover:opacity-75 transition-opacity">
+              {productImages.map((img, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrentImageIndex(i)}
+                  className={`aspect-square rounded-lg overflow-hidden bg-muted cursor-pointer transition-all ${
+                    i === currentImageIndex 
+                      ? "ring-2 ring-primary ring-offset-2" 
+                      : "hover:opacity-75"
+                  }`}
+                >
                   <img
-                    src={product.image}
-                    alt={`${product.name} view ${i}`}
+                    src={img}
+                    alt={`${product.name} view ${i + 1}`}
                     className="w-full h-full object-cover"
                   />
-                </div>
+                </button>
               ))}
             </div>
           </div>
