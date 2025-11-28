@@ -23,8 +23,9 @@ const Navbar = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center">
-            <img src={logo} alt="AMANGA - Quality meets Fashion" className="h-16 w-auto object-contain" />
+          <Link to="/" className="flex items-center space-x-3">
+            <img src={logo} alt="AMANGA - Quality meets Fashion" className="h-14 w-auto object-contain" />
+            <h1 className="text-2xl font-serif font-bold gradient-text hidden sm:block">AMANGA</h1>
           </Link>
 
           {/* Desktop Navigation */}
