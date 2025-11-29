@@ -14,17 +14,17 @@ const Shop = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
 
-      <div className="container mx-auto px-4 py-12">
-        <div className="mb-8">
-          <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4">Shop Collection</h1>
-          <p className="text-lg text-muted-foreground">
+      <div className="container mx-auto px-4 sm:px-6 py-6 md:py-12">
+        <div className="mb-6 md:mb-8 text-center md:text-left">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold mb-2 md:mb-4">Shop Collection</h1>
+          <p className="text-base md:text-lg text-muted-foreground">
             Explore our exquisite selection of luxury jewelry
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Filters Sidebar */}
-          <div className="lg:col-span-1">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 md:gap-8">
+          {/* Filters Sidebar - Hidden on mobile, shown on lg+ */}
+          <div className="hidden lg:block lg:col-span-1">
             <div className="sticky top-24 space-y-8">
               {/* Category Filter */}
               <div>
@@ -70,11 +70,11 @@ const Shop = () => {
 
           {/* Products Grid */}
           <div className="lg:col-span-3">
-            <div className="flex items-center justify-between mb-6">
-              <p className="text-sm text-muted-foreground">
+            <div className="flex items-center justify-between mb-4 md:mb-6">
+              <p className="text-xs sm:text-sm text-muted-foreground">
                 Showing {products.length} products
               </p>
-              <select className="border border-border rounded-md px-4 py-2 text-sm bg-background">
+              <select className="border border-border rounded-md px-3 sm:px-4 py-2 text-xs sm:text-sm bg-background min-h-[44px]">
                 <option>Sort by: Featured</option>
                 <option>Price: Low to High</option>
                 <option>Price: High to Low</option>
@@ -82,7 +82,7 @@ const Shop = () => {
               </select>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
               {products.map((product) => (
                 <ProductCard key={product.id} {...product} />
               ))}
