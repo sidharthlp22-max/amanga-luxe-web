@@ -65,19 +65,19 @@ const ProductDetail = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
 
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 sm:px-6 py-6 md:py-12">
         {/* Breadcrumb */}
-        <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-8">
+        <div className="flex items-center flex-wrap gap-1 sm:gap-2 text-xs sm:text-sm text-muted-foreground mb-6 md:mb-8">
           <Link to="/" className="hover:text-foreground">Home</Link>
           <span>/</span>
           <Link to="/shop" className="hover:text-foreground">Shop</Link>
           <span>/</span>
-          <span className="text-foreground">{product.name}</span>
+          <span className="text-foreground line-clamp-1">{product.name}</span>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-12 mb-12 md:mb-20">
           {/* Product Images with Slideshow */}
-          <div className="space-y-4">
+          <div className="space-y-3 sm:space-y-4">
             <div className="aspect-square rounded-lg overflow-hidden bg-muted relative group">
               <img
                 src={productImages[currentImageIndex]}
@@ -85,24 +85,26 @@ const ProductDetail = () => {
                 className="w-full h-full object-cover transition-opacity duration-300"
               />
               
-              {/* Navigation arrows - only show if multiple images */}
+              {/* Navigation arrows - always visible on mobile for touch */}
               {productImages.length > 1 && (
                 <>
                   <button
                     onClick={prevImage}
-                    className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/80 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-background"
+                    className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-10 sm:h-10 rounded-full bg-background/80 backdrop-blur-sm flex items-center justify-center opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity hover:bg-background active:scale-95"
+                    aria-label="Previous image"
                   >
                     <ChevronLeft className="h-5 w-5" />
                   </button>
                   <button
                     onClick={nextImage}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/80 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-background"
+                    className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-10 sm:h-10 rounded-full bg-background/80 backdrop-blur-sm flex items-center justify-center opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity hover:bg-background active:scale-95"
+                    aria-label="Next image"
                   >
                     <ChevronRight className="h-5 w-5" />
                   </button>
                   
                   {/* Image counter */}
-                  <div className="absolute bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-background/80 backdrop-blur-sm text-sm">
+                  <div className="absolute bottom-2 sm:bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-background/80 backdrop-blur-sm text-xs sm:text-sm">
                     {currentImageIndex + 1} / {productImages.length}
                   </div>
                 </>
@@ -110,14 +112,14 @@ const ProductDetail = () => {
             </div>
             
             {/* Thumbnail gallery */}
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-4 gap-2 sm:gap-4">
               {productImages.map((img, i) => (
                 <button
                   key={i}
                   onClick={() => setCurrentImageIndex(i)}
-                  className={`aspect-square rounded-lg overflow-hidden bg-muted cursor-pointer transition-all ${
+                  className={`aspect-square rounded-md sm:rounded-lg overflow-hidden bg-muted cursor-pointer transition-all active:scale-95 ${
                     i === currentImageIndex 
-                      ? "ring-2 ring-primary ring-offset-2" 
+                      ? "ring-2 ring-primary ring-offset-1 sm:ring-offset-2" 
                       : "hover:opacity-75"
                   }`}
                 >
@@ -132,46 +134,46 @@ const ProductDetail = () => {
           </div>
 
           {/* Product Info */}
-          <div className="space-y-6">
-            <div>
-              <p className="text-sm text-muted-foreground uppercase tracking-wider mb-2">
+          <div className="space-y-4 sm:space-y-6">
+            <div className="text-center lg:text-left">
+              <p className="text-xs sm:text-sm text-muted-foreground uppercase tracking-wider mb-1 sm:mb-2">
                 {product.category}
               </p>
-              <h1 className="text-4xl font-serif font-bold mb-4">{product.name}</h1>
-              <p className="text-3xl font-semibold gradient-text">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold mb-2 sm:mb-4">{product.name}</h1>
+              <p className="text-2xl sm:text-3xl font-semibold gradient-text">
                 ₹{product.price.toLocaleString()}
               </p>
             </div>
 
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed text-center lg:text-left">
               {product.description}
             </p>
 
             {/* Actions */}
-            <div className="space-y-4">
-              <div className="flex gap-4">
+            <div className="space-y-3 sm:space-y-4">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <Button
                   size="lg"
-                  className="flex-1 gradient-bg text-white hover:opacity-90"
+                  className="flex-1 gradient-bg text-white hover:opacity-90 min-h-[48px] text-sm sm:text-base"
                   onClick={handleWhatsAppOrder}
                 >
-                  <MessageCircle className="h-5 w-5 mr-2" />
-                  Order via WhatsApp
+                  <MessageCircle className="h-5 w-5 mr-2 flex-shrink-0" />
+                  <span>Order via WhatsApp</span>
                 </Button>
                 <Button
                   size="lg"
                   variant="outline"
-                  className="flex-1"
+                  className="flex-1 min-h-[48px] text-sm sm:text-base"
                   onClick={handleInstagramContact}
                 >
-                  <Instagram className="h-5 w-5 mr-2" />
-                  Contact on Instagram
+                  <Instagram className="h-5 w-5 mr-2 flex-shrink-0" />
+                  <span>Contact on Instagram</span>
                 </Button>
               </div>
               <Button
                 size="lg"
                 variant="outline"
-                className={`w-full ${isWishlisted ? "border-secondary text-secondary" : ""}`}
+                className={`w-full min-h-[48px] ${isWishlisted ? "border-secondary text-secondary" : ""}`}
                 onClick={handleWishlistToggle}
               >
                 <Heart className={`h-5 w-5 mr-2 ${isWishlisted ? "fill-current" : ""}`} />
@@ -180,8 +182,8 @@ const ProductDetail = () => {
             </div>
 
             {/* Features */}
-            <div className="border-t border-border pt-6 space-y-3">
-              <div className="flex items-center space-x-2 text-sm">
+            <div className="border-t border-border pt-4 sm:pt-6 space-y-3">
+              <div className="flex items-center justify-center lg:justify-start space-x-2 text-sm">
                 <Heart className="h-4 w-4 text-primary" />
                 <span>Certificate of Authenticity</span>
               </div>
@@ -190,25 +192,25 @@ const ProductDetail = () => {
         </div>
 
         {/* Product Details Tabs */}
-        <div className="mb-20">
+        <div className="mb-12 md:mb-20">
           <Tabs defaultValue="details" className="w-full">
-            <TabsList className="grid w-full grid-cols-2 max-w-md">
-              <TabsTrigger value="details">Details</TabsTrigger>
-              <TabsTrigger value="care">Care</TabsTrigger>
+            <TabsList className="grid w-full grid-cols-2 max-w-md mx-auto lg:mx-0">
+              <TabsTrigger value="details" className="min-h-[44px]">Details</TabsTrigger>
+              <TabsTrigger value="care" className="min-h-[44px]">Care</TabsTrigger>
             </TabsList>
-            <TabsContent value="details" className="mt-8">
-              <div className="grid grid-cols-2 gap-4 max-w-md">
+            <TabsContent value="details" className="mt-6 sm:mt-8">
+              <div className="grid grid-cols-2 gap-3 sm:gap-4 max-w-md mx-auto lg:mx-0">
                 {Object.entries(product.details).map(([key, value]) => (
-                  <div key={key}>
-                    <p className="text-sm text-muted-foreground capitalize">{key}</p>
-                    <p className="font-medium">{value}</p>
+                  <div key={key} className="text-center lg:text-left">
+                    <p className="text-xs sm:text-sm text-muted-foreground capitalize">{key}</p>
+                    <p className="font-medium text-sm sm:text-base">{value}</p>
                   </div>
                 ))}
               </div>
             </TabsContent>
-            <TabsContent value="care" className="mt-8">
-              <div className="prose prose-sm max-w-2xl">
-                <p className="text-muted-foreground">
+            <TabsContent value="care" className="mt-6 sm:mt-8">
+              <div className="prose prose-sm max-w-2xl mx-auto lg:mx-0 text-center lg:text-left">
+                <p className="text-sm sm:text-base text-muted-foreground">
                   To maintain the beauty and brilliance of your jewelry, we recommend regular cleaning with a soft cloth. 
                   Store in a cool, dry place away from direct sunlight. Avoid contact with harsh chemicals and remove 
                   during physical activities.
@@ -220,8 +222,8 @@ const ProductDetail = () => {
 
         {/* Related Products */}
         <div>
-          <h2 className="text-3xl font-serif font-bold mb-8">You May Also Like</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <h2 className="text-2xl sm:text-3xl font-serif font-bold mb-6 sm:mb-8 text-center lg:text-left">You May Also Like</h2>
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
             {relatedProducts.map((product) => (
               <ProductCard key={product.id} {...product} />
             ))}

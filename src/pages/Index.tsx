@@ -23,33 +23,33 @@ const Index = () => {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative h-[90vh] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[85vh] md:h-[90vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
             src={heroImage}
             alt="Luxury Jewelry"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/50 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/70 to-background/30 md:from-background/90 md:via-background/50 md:to-transparent" />
         </div>
         
-        <div className="container mx-auto px-4 z-10">
-          <div className="max-w-2xl">
-            <h1 className="text-5xl md:text-7xl font-serif font-bold mb-6 leading-tight">
+        <div className="container mx-auto px-4 sm:px-6 z-10">
+          <div className="max-w-2xl text-center md:text-left">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-serif font-bold mb-4 md:mb-6 leading-tight">
               Where <span className="gradient-text">Quality</span> meets <span className="gradient-text">Fashion</span>
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-6 md:mb-8 leading-relaxed px-2 md:px-0">
               Discover timeless elegance in our curated collection of luxury jewelry. Each piece is crafted with exceptional attention to detail.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link to="/shop">
-                <Button size="lg" className="gradient-bg text-white hover:opacity-90 text-base">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start">
+              <Link to="/shop" className="w-full sm:w-auto">
+                <Button size="lg" className="gradient-bg text-white hover:opacity-90 text-base w-full sm:w-auto min-h-[48px]">
                   Explore Collection
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
-              <Link to="/about">
-                <Button size="lg" variant="outline" className="text-base border-2">
+              <Link to="/about" className="w-full sm:w-auto">
+                <Button size="lg" variant="outline" className="text-base border-2 w-full sm:w-auto min-h-[48px]">
                   Our Story
                 </Button>
               </Link>
@@ -59,37 +59,37 @@ const Index = () => {
       </section>
 
       {/* Features */}
-      <section className="py-16 border-y border-border">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="flex items-start space-x-4">
-              <div className="p-3 rounded-lg gradient-bg">
+      <section className="py-10 md:py-16 border-y border-border">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8">
+            <div className="flex items-start space-x-4 p-4 sm:p-0 text-center sm:text-left flex-col sm:flex-row items-center sm:items-start">
+              <div className="p-3 rounded-lg gradient-bg flex-shrink-0 mb-3 sm:mb-0">
                 <Sparkles className="h-6 w-6 text-white" />
               </div>
               <div>
-                <h3 className="font-semibold mb-2">Premium Quality</h3>
+                <h3 className="font-semibold mb-1 sm:mb-2 text-base">Premium Quality</h3>
                 <p className="text-sm text-muted-foreground">
                   Ethically sourced materials and certified gemstones
                 </p>
               </div>
             </div>
-            <div className="flex items-start space-x-4">
-              <div className="p-3 rounded-lg gradient-bg">
+            <div className="flex items-start space-x-4 p-4 sm:p-0 text-center sm:text-left flex-col sm:flex-row items-center sm:items-start">
+              <div className="p-3 rounded-lg gradient-bg flex-shrink-0 mb-3 sm:mb-0">
                 <Award className="h-6 w-6 text-white" />
               </div>
               <div>
-                <h3 className="font-semibold mb-2">Expert Craftsmanship</h3>
+                <h3 className="font-semibold mb-1 sm:mb-2 text-base">Expert Craftsmanship</h3>
                 <p className="text-sm text-muted-foreground">
                   Handcrafted by master artisans with decades of experience
                 </p>
               </div>
             </div>
-            <div className="flex items-start space-x-4">
-              <div className="p-3 rounded-lg gradient-bg">
+            <div className="flex items-start space-x-4 p-4 sm:p-0 text-center sm:text-left flex-col sm:flex-row items-center sm:items-start">
+              <div className="p-3 rounded-lg gradient-bg flex-shrink-0 mb-3 sm:mb-0">
                 <Shield className="h-6 w-6 text-white" />
               </div>
               <div>
-                <h3 className="font-semibold mb-2">Certificate of Authenticity</h3>
+                <h3 className="font-semibold mb-1 sm:mb-2 text-base">Certificate of Authenticity</h3>
                 <p className="text-sm text-muted-foreground">
                   Every piece comes with a certificate of authenticity
                 </p>
@@ -100,26 +100,26 @@ const Index = () => {
       </section>
 
       {/* Featured Collection */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-serif font-bold mb-4">
+      <section className="py-12 md:py-20">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="text-center mb-8 md:mb-12">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold mb-3 md:mb-4">
               Featured Collection
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-2">
               Explore our handpicked selection of exquisite jewelry pieces
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
             {featuredProducts.map((product) => (
               <ProductCard key={product.id} {...product} />
             ))}
           </div>
 
-          <div className="text-center mt-12">
+          <div className="text-center mt-8 md:mt-12">
             <Link to="/shop">
-              <Button size="lg" variant="outline" className="border-2">
+              <Button size="lg" variant="outline" className="border-2 min-h-[48px]">
                 View All Products
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
@@ -129,28 +129,28 @@ const Index = () => {
       </section>
 
       {/* Brand Story */}
-      <section className="py-20 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="order-2 lg:order-1">
-              <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">
+      <section className="py-12 md:py-20 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
+            <div className="order-2 lg:order-1 text-center lg:text-left">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold mb-4 md:mb-6">
                 The AMANGA Story
               </h2>
-              <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+              <p className="text-base md:text-lg text-muted-foreground mb-4 md:mb-6 leading-relaxed">
                 Founded with a passion for exceptional craftsmanship and timeless design, AMANGA represents the perfect fusion of traditional artistry and contemporary elegance.
               </p>
-              <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+              <p className="text-base md:text-lg text-muted-foreground mb-6 md:mb-8 leading-relaxed">
                 Each piece in our collection tells a story of dedication, precision, and the pursuit of perfection. We believe that luxury jewelry should not only be beautiful but also meaningful.
               </p>
               <Link to="/about">
-                <Button size="lg" className="gradient-bg text-white hover:opacity-90">
+                <Button size="lg" className="gradient-bg text-white hover:opacity-90 min-h-[48px] w-full sm:w-auto">
                   Discover Our Journey
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
             </div>
             <div className="order-1 lg:order-2">
-              <div className="aspect-square rounded-lg overflow-hidden shadow-luxury">
+              <div className="aspect-square rounded-lg overflow-hidden shadow-luxury max-w-md mx-auto lg:max-w-none">
                 <img
                   src={heroImage}
                   alt="AMANGA Craftsmanship"
