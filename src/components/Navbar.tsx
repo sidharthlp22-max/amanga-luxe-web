@@ -36,9 +36,21 @@ const Navbar = () => {
 
   const filteredProducts = useMemo(() => {
     if (!searchQuery.trim()) return [];
-    return products.filter((product) =>
-      product.name.toLowerCase().includes(searchQuery.toLowerCase())
-    ).slice(0, 5);
+    const query = searchQuery.toLowerCase();
+    return products
+      .filter((product) => product.name.toLowerCase().includes(query))
+      .sort((a, b) => {
+        const aName = a.name.toLowerCase();
+        const bName = b.name.toLowerCase();
+        const aStarts = aName.startsWith(query);
+        const bStarts = bName.startsWith(query);
+        // Prioritize names that start with the query
+        if (aStarts && !bStarts) return -1;
+        if (!aStarts && bStarts) return 1;
+        // Then sort alphabetically
+        return aName.localeCompare(bName);
+      })
+      .slice(0, 5);
   }, [searchQuery]);
 
   const handleProductSelect = (productId: string) => {
