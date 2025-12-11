@@ -4,8 +4,9 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
 import { Button } from "@/components/ui/button";
-import { Heart, MessageCircle, Instagram, ChevronLeft, ChevronRight } from "lucide-react";
+import { Heart, MessageCircle, Instagram, ChevronLeft, ChevronRight, X, ZoomIn } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { products, getProductById } from "@/data/products";
 import { useWishlist } from "@/context/WishlistContext";
 
@@ -13,7 +14,7 @@ const ProductDetail = () => {
   const { id } = useParams();
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const product = getProductById(id || "");
 
   useEffect(() => {
@@ -78,25 +79,33 @@ const ProductDetail = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-12 mb-12 md:mb-20">
           {/* Product Images with Slideshow */}
           <div className="space-y-3 sm:space-y-4">
-            <div className="aspect-square rounded-lg overflow-hidden bg-muted relative group">
+            <div 
+              className="aspect-square rounded-lg overflow-hidden bg-muted relative group cursor-pointer"
+              onClick={() => setIsLightboxOpen(true)}
+            >
               <img
                 src={productImages[currentImageIndex]}
                 alt={product.name}
                 className="w-full h-full object-cover transition-opacity duration-300"
               />
               
+              {/* Tap to zoom indicator */}
+              <div className="absolute top-2 right-2 sm:top-3 sm:right-3 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-background/80 backdrop-blur-sm flex items-center justify-center opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
+                <ZoomIn className="h-4 w-4 sm:h-5 sm:w-5" />
+              </div>
+              
               {/* Navigation arrows - always visible on mobile for touch */}
               {productImages.length > 1 && (
                 <>
                   <button
-                    onClick={prevImage}
+                    onClick={(e) => { e.stopPropagation(); prevImage(); }}
                     className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-10 sm:h-10 rounded-full bg-background/80 backdrop-blur-sm flex items-center justify-center opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity hover:bg-background active:scale-95"
                     aria-label="Previous image"
                   >
                     <ChevronLeft className="h-5 w-5" />
                   </button>
                   <button
-                    onClick={nextImage}
+                    onClick={(e) => { e.stopPropagation(); nextImage(); }}
                     className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-10 sm:h-10 rounded-full bg-background/80 backdrop-blur-sm flex items-center justify-center opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity hover:bg-background active:scale-95"
                     aria-label="Next image"
                   >
@@ -230,6 +239,60 @@ const ProductDetail = () => {
           </div>
         </div>
       </div>
+
+      {/* Lightbox Modal */}
+      <Dialog open={isLightboxOpen} onOpenChange={setIsLightboxOpen}>
+        <DialogContent className="max-w-[95vw] sm:max-w-4xl p-0 bg-black/95 border-none">
+          <div className="relative w-full h-[80vh] flex items-center justify-center">
+            <button
+              onClick={() => setIsLightboxOpen(false)}
+              className="absolute top-2 right-2 sm:top-4 sm:right-4 z-10 w-10 h-10 rounded-full bg-background/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-background/40 transition-colors"
+              aria-label="Close"
+            >
+              <X className="h-5 w-5" />
+            </button>
+            
+            <img
+              src={productImages[currentImageIndex]}
+              alt={product.name}
+              className="max-w-full max-h-full object-contain"
+            />
+            
+            {productImages.length > 1 && (
+              <>
+                <button
+                  onClick={prevImage}
+                  className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-background/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-background/40 transition-colors active:scale-95"
+                  aria-label="Previous image"
+                >
+                  <ChevronLeft className="h-6 w-6" />
+                </button>
+                <button
+                  onClick={nextImage}
+                  className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-background/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-background/40 transition-colors active:scale-95"
+                  aria-label="Next image"
+                >
+                  <ChevronRight className="h-6 w-6" />
+                </button>
+                
+                {/* Thumbnail dots */}
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                  {productImages.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setCurrentImageIndex(i)}
+                      className={`w-2.5 h-2.5 rounded-full transition-colors ${
+                        i === currentImageIndex ? "bg-white" : "bg-white/40"
+                      }`}
+                      aria-label={`View image ${i + 1}`}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
+        </DialogContent>
+      </Dialog>
 
       <Footer />
     </div>
