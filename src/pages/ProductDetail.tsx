@@ -5,7 +5,6 @@ import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
 import { Button } from "@/components/ui/button";
 import { Heart, MessageCircle, Instagram, ChevronLeft, ChevronRight, X, ZoomIn } from "lucide-react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { products, getProductById } from "@/data/products";
 import { useWishlist } from "@/context/WishlistContext";
@@ -190,43 +189,19 @@ const ProductDetail = () => {
               </Button>
             </div>
 
-            {/* Features */}
-            <div className="border-t border-border pt-4 sm:pt-6 space-y-3">
-              <div className="flex items-center justify-center lg:justify-start space-x-2 text-sm">
-                <Heart className="h-4 w-4 text-primary" />
-                <span>Certificate of Authenticity</span>
-              </div>
-            </div>
           </div>
         </div>
 
-        {/* Product Details Tabs */}
+        {/* Care Instructions */}
         <div className="mb-12 md:mb-20">
-          <Tabs defaultValue="details" className="w-full">
-            <TabsList className="grid w-full grid-cols-2 max-w-md mx-auto lg:mx-0">
-              <TabsTrigger value="details" className="min-h-[44px]">Details</TabsTrigger>
-              <TabsTrigger value="care" className="min-h-[44px]">Care</TabsTrigger>
-            </TabsList>
-            <TabsContent value="details" className="mt-6 sm:mt-8">
-              <div className="grid grid-cols-2 gap-3 sm:gap-4 max-w-md mx-auto lg:mx-0">
-                {Object.entries(product.details).map(([key, value]) => (
-                  <div key={key} className="text-center lg:text-left">
-                    <p className="text-xs sm:text-sm text-muted-foreground capitalize">{key}</p>
-                    <p className="font-medium text-sm sm:text-base">{value}</p>
-                  </div>
-                ))}
-              </div>
-            </TabsContent>
-            <TabsContent value="care" className="mt-6 sm:mt-8">
-              <div className="prose prose-sm max-w-2xl mx-auto lg:mx-0 text-center lg:text-left">
-                <p className="text-sm sm:text-base text-muted-foreground">
-                  To maintain the beauty and brilliance of your jewelry, we recommend regular cleaning with a soft cloth. 
-                  Store in a cool, dry place away from direct sunlight. Avoid contact with harsh chemicals and remove 
-                  during physical activities.
-                </p>
-              </div>
-            </TabsContent>
-          </Tabs>
+          <h2 className="text-xl sm:text-2xl font-serif font-bold mb-4 sm:mb-6 text-center lg:text-left">Care Instructions</h2>
+          <div className="prose prose-sm max-w-2xl mx-auto lg:mx-0 text-center lg:text-left">
+            <p className="text-sm sm:text-base text-muted-foreground">
+              To maintain the beauty and brilliance of your jewelry, we recommend regular cleaning with a soft cloth. 
+              Store in a cool, dry place away from direct sunlight. Avoid contact with harsh chemicals and remove 
+              during physical activities.
+            </p>
+          </div>
         </div>
 
         {/* Related Products */}

@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer className="bg-muted/30 border-t border-border mt-12 md:mt-20">
       <div className="container mx-auto px-4 sm:px-6 py-8 md:py-12">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
           {/* Brand */}
           <div className="col-span-2 md:col-span-1 space-y-4 text-center md:text-left">
             <Link to="/" className="inline-block">
@@ -72,30 +72,7 @@ const Footer = () => {
                   Care Instructions
                 </a>
               </li>
-              <li>
-                <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors py-1 inline-block">
-                  FAQ
-                </a>
-              </li>
             </ul>
-          </div>
-
-          {/* Newsletter */}
-          <div className="col-span-2 md:col-span-1 text-center md:text-left">
-            <h3 className="font-semibold mb-3 md:mb-4 text-sm md:text-base">Stay Connected</h3>
-            <p className="text-sm text-muted-foreground mb-4">
-              Subscribe to receive updates on new arrivals and exclusive offers.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-2 max-w-sm mx-auto md:mx-0">
-              <input
-                type="email"
-                placeholder="Your email"
-                className="flex h-11 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
-              />
-              <button className="gradient-bg text-white px-4 py-2.5 rounded-md text-sm font-medium hover:opacity-90 transition-opacity whitespace-nowrap min-h-[44px]">
-                Subscribe
-              </button>
-            </div>
           </div>
         </div>
 
