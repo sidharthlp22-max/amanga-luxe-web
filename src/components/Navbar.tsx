@@ -28,6 +28,11 @@ const Navbar = () => {
             <h1 className="text-2xl font-serif font-bold gradient-text hidden sm:block">AMANGA</h1>
           </Link>
 
+          {/* Mobile Center Brand Name */}
+          <Link to="/" className="absolute left-1/2 -translate-x-1/2 sm:hidden">
+            <h1 className="text-xl font-serif font-bold gradient-text">AMANGA</h1>
+          </Link>
+
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
