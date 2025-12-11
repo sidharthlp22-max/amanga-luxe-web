@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
 import { Button } from "@/components/ui/button";
 import { Heart, MessageCircle, Instagram, ChevronLeft, ChevronRight, X, ZoomIn } from "lucide-react";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog as LightboxDialog, DialogContent as LightboxContent } from "@/components/ui/dialog";
 import { products, getProductById } from "@/data/products";
 import { useWishlist } from "@/context/WishlistContext";
 
@@ -216,8 +216,8 @@ const ProductDetail = () => {
       </div>
 
       {/* Lightbox Modal */}
-      <Dialog open={isLightboxOpen} onOpenChange={setIsLightboxOpen}>
-        <DialogContent className="max-w-[95vw] sm:max-w-4xl p-0 bg-black/95 border-none">
+      <LightboxDialog open={isLightboxOpen} onOpenChange={setIsLightboxOpen}>
+        <LightboxContent className="max-w-[95vw] sm:max-w-4xl p-0 bg-black/95 border-none">
           <div className="relative w-full h-[80vh] flex items-center justify-center">
             <button
               onClick={() => setIsLightboxOpen(false)}
@@ -266,8 +266,8 @@ const ProductDetail = () => {
               </>
             )}
           </div>
-        </DialogContent>
-      </Dialog>
+        </LightboxContent>
+      </LightboxDialog>
 
       <Footer />
     </div>
