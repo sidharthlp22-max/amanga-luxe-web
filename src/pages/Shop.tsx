@@ -9,6 +9,7 @@ import { products } from "@/data/products";
 const Shop = () => {
   const categories = ["Necklaces", "Earrings"];
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [sortBy, setSortBy] = useState("featured");
 
   const handleCategoryChange = (category: string, checked: boolean) => {
     if (checked) {
@@ -20,16 +21,37 @@ const Shop = () => {
 
   const resetFilters = () => {
     setSelectedCategories([]);
+    setSortBy("featured");
   };
 
   const filteredProducts = useMemo(() => {
-    if (selectedCategories.length === 0) {
-      return products;
+    let result = [...products];
+    
+    // Filter by category
+    if (selectedCategories.length > 0) {
+      result = result.filter((product) =>
+        selectedCategories.includes(product.category)
+      );
     }
-    return products.filter((product) =>
-      selectedCategories.includes(product.category)
-    );
-  }, [selectedCategories]);
+    
+    // Sort products
+    switch (sortBy) {
+      case "price-low":
+        result.sort((a, b) => a.price - b.price);
+        break;
+      case "price-high":
+        result.sort((a, b) => b.price - a.price);
+        break;
+      case "newest":
+        result.sort((a, b) => parseInt(b.id) - parseInt(a.id));
+        break;
+      default:
+        // Featured - keep original order
+        break;
+    }
+    
+    return result;
+  }, [selectedCategories, sortBy]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -83,11 +105,15 @@ const Shop = () => {
               <p className="text-xs sm:text-sm text-muted-foreground">
                 Showing {filteredProducts.length} products
               </p>
-              <select className="border border-border rounded-md px-3 sm:px-4 py-2 text-xs sm:text-sm bg-background min-h-[44px]">
-                <option>Sort by: Featured</option>
-                <option>Price: Low to High</option>
-                <option>Price: High to Low</option>
-                <option>Newest First</option>
+              <select 
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value)}
+                className="border border-border rounded-md px-3 sm:px-4 py-2 text-xs sm:text-sm bg-background min-h-[44px]"
+              >
+                <option value="featured">Sort by: Featured</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="newest">Newest First</option>
               </select>
             </div>
 
