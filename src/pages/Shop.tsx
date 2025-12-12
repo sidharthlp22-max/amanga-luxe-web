@@ -1,3 +1,4 @@
+import { useState, useMemo } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
@@ -6,8 +7,29 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { products } from "@/data/products";
 
 const Shop = () => {
-
   const categories = ["Necklaces", "Earrings"];
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+
+  const handleCategoryChange = (category: string, checked: boolean) => {
+    if (checked) {
+      setSelectedCategories((prev) => [...prev, category]);
+    } else {
+      setSelectedCategories((prev) => prev.filter((c) => c !== category));
+    }
+  };
+
+  const resetFilters = () => {
+    setSelectedCategories([]);
+  };
+
+  const filteredProducts = useMemo(() => {
+    if (selectedCategories.length === 0) {
+      return products;
+    }
+    return products.filter((product) =>
+      selectedCategories.includes(product.category)
+    );
+  }, [selectedCategories]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -31,7 +53,13 @@ const Shop = () => {
                 <div className="space-y-3">
                   {categories.map((category) => (
                     <div key={category} className="flex items-center space-x-2">
-                      <Checkbox id={category} />
+                      <Checkbox
+                        id={category}
+                        checked={selectedCategories.includes(category)}
+                        onCheckedChange={(checked) =>
+                          handleCategoryChange(category, checked as boolean)
+                        }
+                      />
                       <label
                         htmlFor={category}
                         className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
@@ -43,8 +71,7 @@ const Shop = () => {
                 </div>
               </div>
 
-
-              <Button className="w-full" variant="outline">
+              <Button className="w-full" variant="outline" onClick={resetFilters}>
                 Reset Filters
               </Button>
             </div>
@@ -54,7 +81,7 @@ const Shop = () => {
           <div className="lg:col-span-3">
             <div className="flex items-center justify-between mb-4 md:mb-6">
               <p className="text-xs sm:text-sm text-muted-foreground">
-                Showing {products.length} products
+                Showing {filteredProducts.length} products
               </p>
               <select className="border border-border rounded-md px-3 sm:px-4 py-2 text-xs sm:text-sm bg-background min-h-[44px]">
                 <option>Sort by: Featured</option>
@@ -65,7 +92,7 @@ const Shop = () => {
             </div>
 
             <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
-              {products.map((product) => (
+              {filteredProducts.map((product) => (
                 <ProductCard key={product.id} {...product} />
               ))}
             </div>
