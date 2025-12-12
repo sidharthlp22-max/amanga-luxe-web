@@ -8,7 +8,6 @@ import { products } from "@/data/products";
 const Shop = () => {
 
   const categories = ["Necklaces", "Earrings"];
-  const materials = ["Gold", "Silver", "Gemstone", "Antique Gold"];
 
   return (
     <div className="min-h-screen bg-background">
@@ -44,23 +43,6 @@ const Shop = () => {
                 </div>
               </div>
 
-              {/* Material Filter */}
-              <div>
-                <h3 className="font-semibold mb-4">Material</h3>
-                <div className="space-y-3">
-                  {materials.map((material) => (
-                    <div key={material} className="flex items-center space-x-2">
-                      <Checkbox id={material} />
-                      <label
-                        htmlFor={material}
-                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
-                      >
-                        {material}
-                      </label>
-                    </div>
-                  ))}
-                </div>
-              </div>
 
               <Button className="w-full" variant="outline">
                 Reset Filters
