@@ -90,7 +90,9 @@ const Navbar = () => {
 
           {/* Search Bar */}
           <div className="hidden lg:flex items-center flex-1 max-w-md mx-8">
-            <Popover open={searchOpen} onOpenChange={setSearchOpen}>
+            <Popover open={searchOpen && searchQuery.trim().length > 0} onOpenChange={(open) => {
+              if (!open) setSearchOpen(false);
+            }}>
               <PopoverTrigger asChild>
                 <div className="relative w-full">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -100,44 +102,42 @@ const Navbar = () => {
                     value={searchQuery}
                     onChange={(e) => {
                       setSearchQuery(e.target.value);
-                      if (e.target.value.trim()) setSearchOpen(true);
+                      setSearchOpen(true);
                     }}
-                    onFocus={() => searchQuery.trim() && setSearchOpen(true)}
+                    onFocus={() => setSearchOpen(true)}
                     className="flex h-10 w-full rounded-md border border-input bg-muted/50 px-3 py-2 pl-10 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                   />
                 </div>
               </PopoverTrigger>
-              {searchQuery.trim() && (
-                <PopoverContent className="w-[400px] p-0" align="start">
-                  <Command>
-                    <CommandList>
-                      {filteredProducts.length === 0 ? (
-                        <CommandEmpty>No products found.</CommandEmpty>
-                      ) : (
-                        <CommandGroup heading="Products">
-                          {filteredProducts.map((product) => (
-                            <CommandItem
-                              key={product.id}
-                              onSelect={() => handleProductSelect(product.id)}
-                              className="cursor-pointer"
-                            >
-                              <img
-                                src={product.image}
-                                alt={product.name}
-                                className="w-10 h-10 rounded object-cover mr-3"
-                              />
-                              <div>
-                                <p className="font-medium">{product.name}</p>
-                                <p className="text-sm text-muted-foreground">₹{product.price.toLocaleString()}</p>
-                              </div>
-                            </CommandItem>
-                          ))}
-                        </CommandGroup>
-                      )}
-                    </CommandList>
-                  </Command>
-                </PopoverContent>
-              )}
+              <PopoverContent className="w-[400px] p-0" align="start" onOpenAutoFocus={(e) => e.preventDefault()}>
+                <Command>
+                  <CommandList>
+                    {filteredProducts.length === 0 ? (
+                      <CommandEmpty>No products found.</CommandEmpty>
+                    ) : (
+                      <CommandGroup heading="Products">
+                        {filteredProducts.map((product) => (
+                          <CommandItem
+                            key={product.id}
+                            onSelect={() => handleProductSelect(product.id)}
+                            className="cursor-pointer"
+                          >
+                            <img
+                              src={product.image}
+                              alt={product.name}
+                              className="w-10 h-10 rounded object-cover mr-3"
+                            />
+                            <div>
+                              <p className="font-medium">{product.name}</p>
+                              <p className="text-sm text-muted-foreground">₹{product.price.toLocaleString()}</p>
+                            </div>
+                          </CommandItem>
+                        ))}
+                      </CommandGroup>
+                    )}
+                  </CommandList>
+                </Command>
+              </PopoverContent>
             </Popover>
           </div>
 
