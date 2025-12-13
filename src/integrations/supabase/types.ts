@@ -14,42 +14,7 @@ export type Database = {
   }
   public: {
     Tables: {
-      media: {
-        Row: {
-          alt_text: string | null
-          created_at: string
-          file_name: string
-          file_path: string
-          file_size: number | null
-          file_type: string
-          id: string
-          mime_type: string | null
-          updated_at: string
-        }
-        Insert: {
-          alt_text?: string | null
-          created_at?: string
-          file_name: string
-          file_path: string
-          file_size?: number | null
-          file_type: string
-          id?: string
-          mime_type?: string | null
-          updated_at?: string
-        }
-        Update: {
-          alt_text?: string | null
-          created_at?: string
-          file_name?: string
-          file_path?: string
-          file_size?: number | null
-          file_type?: string
-          id?: string
-          mime_type?: string | null
-          updated_at?: string
-        }
-        Relationships: []
-      }
+      [_ in never]: never
     }
     Views: {
       [_ in never]: never
