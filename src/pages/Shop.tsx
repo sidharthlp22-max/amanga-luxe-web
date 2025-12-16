@@ -4,12 +4,13 @@ import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { products } from "@/data/products";
+import { useProducts } from "@/hooks/useProducts";
 
 const Shop = () => {
-  const categories = ["Necklaces", "Earrings"];
+  const categories = ["Necklaces", "Earrings", "Bracelets", "Rings", "Sets"];
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [sortBy, setSortBy] = useState("featured");
+  const { products, loading } = useProducts();
 
   const handleCategoryChange = (category: string, checked: boolean) => {
     if (checked) {
@@ -43,7 +44,7 @@ const Shop = () => {
         result.sort((a, b) => b.price - a.price);
         break;
       case "newest":
-        result.sort((a, b) => parseInt(b.id) - parseInt(a.id));
+        // For DB products, they're already sorted by created_at desc
         break;
       default:
         // Featured - keep original order
@@ -51,7 +52,7 @@ const Shop = () => {
     }
     
     return result;
-  }, [selectedCategories, sortBy]);
+  }, [products, selectedCategories, sortBy]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -103,7 +104,7 @@ const Shop = () => {
           <div className="lg:col-span-3">
             <div className="flex items-center justify-between mb-4 md:mb-6">
               <p className="text-xs sm:text-sm text-muted-foreground">
-                Showing {filteredProducts.length} products
+                {loading ? 'Loading...' : `Showing ${filteredProducts.length} products`}
               </p>
               <select 
                 value={sortBy}
@@ -117,11 +118,19 @@ const Shop = () => {
               </select>
             </div>
 
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
-              {filteredProducts.map((product) => (
-                <ProductCard key={product.id} {...product} />
-              ))}
-            </div>
+            {loading ? (
+              <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
+                {[...Array(6)].map((_, i) => (
+                  <div key={i} className="aspect-square bg-muted animate-pulse rounded-lg" />
+                ))}
+              </div>
+            ) : (
+              <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
+                {filteredProducts.map((product) => (
+                  <ProductCard key={product.id} {...product} />
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>
