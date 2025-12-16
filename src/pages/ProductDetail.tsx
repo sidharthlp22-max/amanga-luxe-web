@@ -6,7 +6,7 @@ import ProductCard from "@/components/ProductCard";
 import { Button } from "@/components/ui/button";
 import { Heart, MessageCircle, Instagram, ChevronLeft, ChevronRight, X, ZoomIn } from "lucide-react";
 import { Dialog as LightboxDialog, DialogContent as LightboxContent } from "@/components/ui/dialog";
-import { products, getProductById } from "@/data/products";
+import { useProduct, useProducts } from "@/hooks/useProducts";
 import { useWishlist } from "@/context/WishlistContext";
 
 const ProductDetail = () => {
@@ -14,11 +14,28 @@ const ProductDetail = () => {
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
-  const product = getProductById(id || "");
+  const { product, loading } = useProduct(id || "");
+  const { products } = useProducts();
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [id]);
+
+  useEffect(() => {
+    setCurrentImageIndex(0);
+  }, [id]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Navbar />
+        <div className="container mx-auto px-4 py-12 flex items-center justify-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
   
   if (!product) {
     return <Navigate to="/shop" replace />;
@@ -188,6 +205,39 @@ const ProductDetail = () => {
                 {isWishlisted ? "Added to Wishlist" : "Add to Wishlist"}
               </Button>
             </div>
+
+            {/* Product Details */}
+            {(product.details.material || product.details.gemstone || product.details.dimensions || product.details.weight) && (
+              <div className="border-t pt-4 sm:pt-6">
+                <h3 className="font-semibold mb-3 text-center lg:text-left">Product Details</h3>
+                <dl className="grid grid-cols-2 gap-2 text-sm">
+                  {product.details.material && (
+                    <>
+                      <dt className="text-muted-foreground">Material</dt>
+                      <dd>{product.details.material}</dd>
+                    </>
+                  )}
+                  {product.details.gemstone && (
+                    <>
+                      <dt className="text-muted-foreground">Gemstone</dt>
+                      <dd>{product.details.gemstone}</dd>
+                    </>
+                  )}
+                  {product.details.dimensions && (
+                    <>
+                      <dt className="text-muted-foreground">Dimensions</dt>
+                      <dd>{product.details.dimensions}</dd>
+                    </>
+                  )}
+                  {product.details.weight && (
+                    <>
+                      <dt className="text-muted-foreground">Weight</dt>
+                      <dd>{product.details.weight}</dd>
+                    </>
+                  )}
+                </dl>
+              </div>
+            )}
 
           </div>
         </div>
