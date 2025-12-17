@@ -59,32 +59,32 @@ const ProductCard = ({ id, name, price, image, category }: ProductCardProps) => 
       
       <div className="absolute top-2 sm:top-4 right-2 sm:right-4 flex flex-col space-y-1.5 sm:space-y-2">
         <Button
-          variant="secondary"
+          variant="ghost"
           size="icon"
-          className={`rounded-full bg-background/90 backdrop-blur-sm hover:bg-background w-8 h-8 sm:w-10 sm:h-10 active:scale-95 ${
-            isWishlisted ? "text-secondary" : ""
+          className={`rounded-full bg-transparent border border-background/80 hover:bg-background/20 w-8 h-8 sm:w-10 sm:h-10 active:scale-95 text-background/90 hover:text-background ${
+            isWishlisted ? "text-secondary border-secondary" : ""
           }`}
           onClick={handleWishlistToggle}
         >
-          <Heart className={`h-3.5 w-3.5 sm:h-4 sm:w-4 ${isWishlisted ? "fill-current" : ""}`} />
+          <Heart className={`h-3.5 w-3.5 sm:h-4 sm:w-4 ${isWishlisted ? "fill-current" : ""}`} strokeWidth={1.5} />
         </Button>
         <Button
-          variant="secondary"
+          variant="ghost"
           size="icon"
-          className="rounded-full bg-background/90 backdrop-blur-sm hover:bg-background w-8 h-8 sm:w-10 sm:h-10 active:scale-95"
+          className="rounded-full bg-transparent border border-background/80 hover:bg-background/20 w-8 h-8 sm:w-10 sm:h-10 active:scale-95 text-background/90 hover:text-background"
           onClick={handleWhatsAppOrder}
           title="Order via WhatsApp"
         >
-          <MessageCircle className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+          <MessageCircle className="h-3.5 w-3.5 sm:h-4 sm:w-4" strokeWidth={1.5} />
         </Button>
         <Button
-          variant="secondary"
+          variant="ghost"
           size="icon"
-          className="rounded-full bg-background/90 backdrop-blur-sm hover:bg-background w-8 h-8 sm:w-10 sm:h-10 active:scale-95"
+          className="rounded-full bg-transparent border border-background/80 hover:bg-background/20 w-8 h-8 sm:w-10 sm:h-10 active:scale-95 text-background/90 hover:text-background"
           onClick={handleInstagramContact}
           title="Contact on Instagram"
         >
-          <Instagram className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+          <Instagram className="h-3.5 w-3.5 sm:h-4 sm:w-4" strokeWidth={1.5} />
         </Button>
       </div>
 
