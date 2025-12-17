@@ -61,8 +61,8 @@ const ProductCard = ({ id, name, price, image, category }: ProductCardProps) => 
         <Button
           variant="ghost"
           size="icon"
-          className={`rounded-full bg-transparent border border-background/80 hover:bg-background/20 w-8 h-8 sm:w-10 sm:h-10 active:scale-95 text-background/90 hover:text-background ${
-            isWishlisted ? "text-secondary border-secondary" : ""
+          className={`rounded-full bg-white/30 backdrop-blur-sm border border-white/60 hover:bg-white/50 w-8 h-8 sm:w-10 sm:h-10 active:scale-95 text-foreground hover:text-foreground ${
+            isWishlisted ? "text-secondary border-secondary bg-white/50" : ""
           }`}
           onClick={handleWishlistToggle}
         >
@@ -71,7 +71,7 @@ const ProductCard = ({ id, name, price, image, category }: ProductCardProps) => 
         <Button
           variant="ghost"
           size="icon"
-          className="rounded-full bg-transparent border border-background/80 hover:bg-background/20 w-8 h-8 sm:w-10 sm:h-10 active:scale-95 text-background/90 hover:text-background"
+          className="rounded-full bg-white/30 backdrop-blur-sm border border-white/60 hover:bg-white/50 w-8 h-8 sm:w-10 sm:h-10 active:scale-95 text-foreground hover:text-foreground"
           onClick={handleWhatsAppOrder}
           title="Order via WhatsApp"
         >
@@ -80,7 +80,7 @@ const ProductCard = ({ id, name, price, image, category }: ProductCardProps) => 
         <Button
           variant="ghost"
           size="icon"
-          className="rounded-full bg-transparent border border-background/80 hover:bg-background/20 w-8 h-8 sm:w-10 sm:h-10 active:scale-95 text-background/90 hover:text-background"
+          className="rounded-full bg-white/30 backdrop-blur-sm border border-white/60 hover:bg-white/50 w-8 h-8 sm:w-10 sm:h-10 active:scale-95 text-foreground hover:text-foreground"
           onClick={handleInstagramContact}
           title="Contact on Instagram"
         >
