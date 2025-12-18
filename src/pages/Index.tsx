@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles, Award, Shield } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -58,46 +58,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Features */}
-      <section className="py-10 md:py-16 border-y border-border">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8">
-            <div className="flex items-start space-x-4 p-4 sm:p-0 text-center sm:text-left flex-col sm:flex-row items-center sm:items-start">
-              <div className="p-3 rounded-lg gradient-bg flex-shrink-0 mb-3 sm:mb-0">
-                <Sparkles className="h-6 w-6 text-white" />
-              </div>
-              <div>
-                <h3 className="font-semibold mb-1 sm:mb-2 text-base">Premium Quality</h3>
-                <p className="text-sm text-muted-foreground">
-                  Ethically sourced materials and certified gemstones
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start space-x-4 p-4 sm:p-0 text-center sm:text-left flex-col sm:flex-row items-center sm:items-start">
-              <div className="p-3 rounded-lg gradient-bg flex-shrink-0 mb-3 sm:mb-0">
-                <Award className="h-6 w-6 text-white" />
-              </div>
-              <div>
-                <h3 className="font-semibold mb-1 sm:mb-2 text-base">Expert Craftsmanship</h3>
-                <p className="text-sm text-muted-foreground">
-                  Handcrafted by master artisans with decades of experience
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start space-x-4 p-4 sm:p-0 text-center sm:text-left flex-col sm:flex-row items-center sm:items-start">
-              <div className="p-3 rounded-lg gradient-bg flex-shrink-0 mb-3 sm:mb-0">
-                <Shield className="h-6 w-6 text-white" />
-              </div>
-              <div>
-                <h3 className="font-semibold mb-1 sm:mb-2 text-base">Certificate of Authenticity</h3>
-                <p className="text-sm text-muted-foreground">
-                  Every piece comes with a certificate of authenticity
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Featured Collection */}
       <section className="py-12 md:py-20">
